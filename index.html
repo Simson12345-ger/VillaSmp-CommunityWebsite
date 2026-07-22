@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villa Tools - Minecraft Utilities</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <!-- JSZip for Resource Pack Creator -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <!-- SkinView3D for 3D Skin Preview -->
+    <script src="https://unpkg.com/skinview3d@2.2.1/bundles/skinview3d.bundle.js"></script>
+</head>
+<body>
+
+    <!-- Animated Particle Background -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Navigation -->
+    <header>
+        <div class="logo">
+            <span class="block-icon"></span>
+            VILLA TOOLS
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="nav-link active" data-section="home">Home</a></li>
+                <li><a href="#" class="nav-link" data-section="crafting">Crafting Recipes</a></li>
+                <li><a href="#" class="nav-link" data-section="names">Name Generator</a></li>
+                <li><a href="#" class="nav-link" data-section="skin">Skin Editor</a></li>
+                <li><a href="#" class="nav-link" data-section="music">Music Creator</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-menu-btn">
+            <div></div><div></div><div></div>
+        </div>
+    </header>
+
+    <!-- Mobile Nav -->
+    <nav class="mobile-nav">
+        <ul>
+            <li><a href="#" class="nav-link active" data-section="home">Home</a></li>
+            <li><a href="#" class="nav-link" data-section="crafting">Crafting Recipes</a></li>
+            <li><a href="#" class="nav-link" data-section="names">Name Generator</a></li>
+            <li><a href="#" class="nav-link" data-section="skin">Skin Editor</a></li>
+            <li><a href="#" class="nav-link" data-section="music">Music Creator</a></li>
+        </ul>
+    </nav>
+
+    <main id="main-content">
+        
+        <!-- HOME SECTION -->
+        <section id="home" class="content-section active">
+            <div class="hero">
+                <h1>VILLA TOOLS</h1>
+                <p class="subtitle">The ultimate companion for Minecraft 1.8.8 players.</p>
+                <button class="block-btn" onclick="navigateTo('crafting')">Explore Tools</button>
+            </div>
+            <div class="card-container">
+                <div class="card" onclick="navigateTo('crafting')">
+                    <h3>Crafting Recipes</h3>
+                    <p>Browse all 1.8.8 recipes with an interactive crafting table.</p>
+                </div>
+                <div class="card" onclick="navigateTo('names')">
+                    <h3>Name Generator</h3>
+                    <p>Generate unique Minecraft usernames based on your playstyle.</p>
+                </div>
+                <div class="card" onclick="navigateTo('skin')">
+                    <h3>Skin Editor</h3>
+                    <p>Upload, edit, and preview your Minecraft skins in 3D.</p>
+                </div>
+                <div class="card" onclick="navigateTo('music')">
+                    <h3>Music Creator</h3>
+                    <p>Build custom 1.8.8 resource packs to replace music discs.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CRAFTING RECIPES SECTION -->
+        <section id="crafting" class="content-section">
+            <h2 class="section-title">Crafting Recipe Database (1.8.8)</h2>
+            <div class="crafting-layout">
+                <div class="sidebar">
+                    <input type="text" id="recipe-search" placeholder="Search items..." class="mc-input">
+                    <div class="categories">
+                        <h4>Categories</h4>
+                        <ul id="category-list"></ul>
+                    </div>
+                    <div class="item-list" id="item-list"></div>
+                </div>
+                <div class="recipe-display" id="recipe-display">
+                    <p class="empty-state">Select an item to view its recipe.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NAME GENERATOR SECTION -->
+        <section id="names" class="content-section">
+            <h2 class="section-title">Minecraft Name Generator</h2>
+            <div class="tool-panel">
+                <div class="settings-panel">
+                    <div class="form-group">
+                        <label>Name Style</label>
+                        <select id="name-style" class="mc-input">
+                            <option value="stylish">Stylish</option>
+                            <option value="pvp">PvP</option>
+                            <option value="dark">Dark</option>
+                            <option value="fantasy">Fantasy</option>
+                            <option value="funny">Funny</option>
+                            <option value="short">Short</option>
+                            <option value="professional">Professional</option>
+                            <option value="smp">SMP Style</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Include Numbers</label>
+                        <div class="toggle-group">
+                            <button class="toggle-btn active" data-toggle="numbers" data-value="yes">Yes</button>
+                            <button class="toggle-btn" data-toggle="numbers" data-value="no">No</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Include Symbols</label>
+                        <div class="toggle-group">
+                            <button class="toggle-btn active" data-toggle="symbols" data-value="yes">Yes</button>
+                            <button class="toggle-btn" data-toggle="symbols" data-value="no">No</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Maximum Length</label>
+                        <input type="number" id="max-length" class="mc-input" value="16" min="3" max="16">
+                    </div>
+                    <div class="form-group">
+                        <label>Starting Letter (Optional)</label>
+                        <input type="text" id="starting-letter" class="mc-input" maxlength="1" placeholder="Any">
+                    </div>
+                    <button class="block-btn" id="generate-name-btn">Generate Name</button>
+                </div>
+                <div class="results-panel">
+                    <h3>Generated Names</h3>
+                    <div id="name-results" class="name-results-grid"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKIN EDITOR SECTION -->
+        <section id="skin" class="content-section">
+            <h2 class="section-title">Minecraft Skin Editor</h2>
+            <div class="tool-panel">
+                <div class="settings-panel">
+                    <div class="form-group">
+                        <label>Upload Skin (PNG)</label>
+                        <input type="file" id="skin-upload" accept="image/png" class="mc-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Edit Color (Click on 2D skin to apply)</label>
+                        <input type="color" id="skin-color-picker" value="#ff0000" class="mc-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Add Accessory</label>
+                        <button class="block-btn small-btn" id="add-glasses">Add Glasses</button>
+                        <button class="block-btn small-btn" id="clear-accessory">Clear</button>
+                    </div>
+                    <button class="block-btn" id="download-skin-btn">Download Skin</button>
+                </div>
+                <div class="results-panel skin-preview-area">
+                    <div id="skin-viewer-3d"></div>
+                    <div class="skin-2d-editor">
+                        <canvas id="skin-2d-canvas" width="64" height="64"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MUSIC CREATOR SECTION -->
+        <section id="music" class="content-section">
+            <h2 class="section-title">Resource Pack Music Creator</h2>
+            <div class="tool-panel">
+                <div class="settings-panel">
+                    <div class="form-group">
+                        <label>Upload Music File (.ogg recommended)</label>
+                        <input type="file" id="music-upload" accept="audio/*" class="mc-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Select Disc to Replace</label>
+                        <select id="disc-select" class="mc-input">
+                            <option value="13">13</option>
+                            <option value="cat">Cat</option>
+                            <option value="blocks">Blocks</option>
+                            <option value="chirp">Chirp</option>
+                            <option value="far">Far</option>
+                            <option value="mall">Mall</option>
+                            <option value="mellohi">Mellohi</option>
+                            <option value="stal">Stal</option>
+                            <option value="strad">Strad</option>
+                            <option value="ward">Ward</option>
+                            <option value="wait">Wait</option>
+                        </select>
+                    </div>
+                    <button class="block-btn" id="generate-pack-btn">Generate Resource Pack</button>
+                </div>
+                <div class="results-panel">
+                    <h3>How it works</h3>
+                    <p class="mc-text">1. Upload your custom audio track (convert to .ogg for Minecraft compatibility).</p>
+                    <p class="mc-text">2. Choose which vanilla disc you want to replace.</p>
+                    <p class="mc-text">3. Click Generate. We will build the correct 1.8.8 pack structure (<code>assets/minecraft/sounds/records/</code>) and download a ready-to-use ZIP file.</p>
+                    <p class="mc-text warning">Note: Minecraft requires audio files to be in .ogg format. You can use an online converter if you have an .mp3 or .wav file.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>Villa Tools - Minecraft Utilities</p>
+            <a href="https://villasmp.com" target="_blank" class="server-link">Visit our server: VillaSMP</a>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/recipes.js"></script>
+    <script src="js/names.js"></script>
+    <script src="js/skin.js"></script>
+    <script src="js/music.js"></script>
+</body>
+</html>
