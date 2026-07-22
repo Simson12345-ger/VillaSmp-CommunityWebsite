@@ -1,0 +1,86 @@
+[
+    {
+        "name": "Diamond Sword",
+        "category": "Weapons",
+        "icon": "https://minecraft.wiki/images/Diamond_Sword.png",
+        "description": "A powerful melee weapon. Deals 7 damage per hit.",
+        "grid": ["D", null, null, "D", null, null, "S", null, null],
+        "keys": {
+            "D": {"item": "Diamond"},
+            "S": {"item": "Stick"}
+        }
+    },
+    {
+        "name": "Diamond Pickaxe",
+        "category": "Tools",
+        "icon": "https://minecraft.wiki/images/Diamond_Pickaxe.png",
+        "description": "Used to mine stone and ores. Required to mine Obsidian.",
+        "grid": ["D", "D", "D", null, "S", null, null, "S", null],
+        "keys": {
+            "D": {"item": "Diamond"},
+            "S": {"item": "Stick"}
+        }
+    },
+    {
+        "name": "Bread",
+        "category": "Food",
+        "icon": "https://minecraft.wiki/images/Bread.png",
+        "description": "A basic food item that restores 5 hunger points.",
+        "grid": ["W", "W", "W", null, null, null, null, null, null],
+        "keys": {
+            "W": {"item": "Wheat"}
+        }
+    },
+    {
+        "name": "TNT",
+        "category": "Redstone",
+        "icon": "https://minecraft.wiki/images/Tnt.png",
+        "description": "An explosive block that can be activated by redstone or fire.",
+        "grid": ["G", "S", "G", "S", "G", "S", "G", "S", "G"],
+        "keys": {
+            "G": {"item": "Gunpowder"},
+            "S": {"item": "Sand"}
+        }
+    },
+    {
+        "name": "Oak Boat",
+        "category": "Transportation",
+        "icon": "https://minecraft.wiki/images/Oak_Boat.png",
+        "description": "A vehicle used to travel on water.",
+        "grid": ["P", null, "P", "P", "P", "P", null, null, null],
+        "keys": {
+            "P": {"item": "Oak_Planks"}
+        }
+    },
+    {
+        "name": "Torch",
+        "category": "Decoration",
+        "icon": "https://minecraft.wiki/images/Torch.png",
+        "description": "Provides light to prevent mobs from spawning.",
+        "grid": ["C", null, null, "S", null, null, null, null, null],
+        "keys": {
+            "C": {"item": "Coal"},
+            "S": {"item": "Stick"}
+        }
+    },
+    {
+        "name": "Stone Bricks",
+        "category": "Building Blocks",
+        "icon": "https://minecraft.wiki/images/Stone_Bricks.png",
+        "description": "A sturdy building material made from Stone.",
+        "grid": ["S", "S", null, "S", "S", null, null, null, null],
+        "keys": {
+            "S": {"item": "Stone"}
+        }
+    },
+    {
+        "name": "Diamond Chestplate",
+        "category": "Armor",
+        "icon": "https://minecraft.wiki/images/Diamond_Chestplate.png",
+        "description": "Protects the torso. Gives 8 armor points.",
+        "grid": ["D", null, "D", "D", "D", "D", "D", "D", "D"],
+        "keys": {
+            "D": {"item": "Diamond"}
+        }
+    }
+]
